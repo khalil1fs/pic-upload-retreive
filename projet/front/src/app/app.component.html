@@ -2,14 +2,12 @@
 <div class="container">
   <div class="mb-3">
     <label for="formFile" class="form-label">Add Image</label>
-    <input class="form-control"  (change)="onImageUpload($event)" type="file" id="formFile">
+    <input class="form-control"  (change)="onImageUpload($event)" type="file" id="formFile" accept="image/png, image/jpeg">
     <small class="p-error" *ngIf="message!=''">{{ message }}</small>
   </div>
   <div class="d-grid gap-2">
     <button type="button" class="btn btn-outline-primary " (click)="save()" >Save</button>
   </div>
-  <br>
-
 
 
 <div class="jumbotron">
@@ -22,7 +20,7 @@
       <img [src]="image.picByte"  alt="Hola ;)" (click)="delete(image)" class="fluid img-thumbnail">
     </div>
   </div>
-
+  <br><br>
 </div>
 
 <footer class="bg-dark" style="position:marker;">

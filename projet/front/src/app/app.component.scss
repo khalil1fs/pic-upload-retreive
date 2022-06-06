@@ -15,5 +15,11 @@ h1 {
 }
 
 footer, footer .container .col{
-  height: 30px;
+  height: 35px;
+  position: fixed;
+  background-color: green;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
 }

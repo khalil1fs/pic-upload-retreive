@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
 
   save() {
     if(this.file == null){
-      this.message = 'Select some file Before Saving !';
+      this.message = 'Select a file Before Saving !';
     }
       this.imageService.save(this.file);
   }
