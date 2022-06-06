@@ -29,7 +29,6 @@ export class ImageService {
         }else {
           this.message = '';
           this.selectedImage = new Image();
-          window.location.reload();
         }
         console.log(data);
       });

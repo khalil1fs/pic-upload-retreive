@@ -43,8 +43,10 @@ export class AppComponent implements OnInit{
   save() {
     if(this.file == null){
       this.message = 'Select a file Before Saving !';
-    }
+    }else {
       this.imageService.save(this.file);
+      document.location.reload();
+    }
   }
 
   delete(image: Image) {
@@ -53,11 +55,12 @@ export class AppComponent implements OnInit{
       this.imageService.delete(image.id).subscribe(
         data => {
           console.log(data);
-          window.location.reload();
+          // window.location.reload();
+          this.ngOnInit();
         }
       );
     }
-    this.findAll();
+    // this.findAll();
   }
 
   get image(): Image {
