@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface ImageService {
 
-    String save(Image image);
+//    String save(Image image);
+
+
+    Image save(Image image);
 
     int save(Image[] images);
 

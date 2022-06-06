@@ -20,7 +20,7 @@ import java.util.zip.Inflater;
 public class ImageRest {
 
     @PostMapping("/")
-    public String save(@RequestParam("file") MultipartFile file) throws IOException {
+    public Image save(@RequestParam("file") MultipartFile file) throws IOException {
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
         Image image = new Image(file.getOriginalFilename(), file.getContentType(), compressBytes(file.getBytes()));
         return imageService.save(image);

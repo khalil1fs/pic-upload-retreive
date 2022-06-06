@@ -21,7 +21,12 @@ export class AppComponent implements OnInit{
 
 
   onImageUpload(event) {
-    this.file = event.target.files[0];
+      this.file = event.target.files[0];
+      if(this.file.name == null){
+        this.message = 'Field Should not be empty!';
+      }else {
+        this.message = '';
+      }
   }
 
   findAll(){
@@ -36,18 +41,23 @@ export class AppComponent implements OnInit{
 
 
   save() {
+    if(this.file == null){
+      this.message = 'Select some file Before Saving !';
+    }
       this.imageService.save(this.file);
-      this.findAll();
   }
 
   delete(image: Image) {
     let conf = window.confirm('are you sure to delete selecting Image ?');
     if(conf) {
       this.imageService.delete(image.id).subscribe(
-        data => console.log(data)
+        data => {
+          console.log(data);
+          window.location.reload();
+        }
       );
-      this.findAll();
     }
+    this.findAll();
   }
 
   get image(): Image {
@@ -66,5 +76,12 @@ export class AppComponent implements OnInit{
     this.imageService.images = value;
   }
 
+  get message(): string {
+    return this.imageService.message;
+  }
+
+  set message(value: string){
+    this.imageService.message = value;
+  }
 
 }

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Image} from "../../model/image";
 import {Observable} from "rxjs";
+import {AppComponent} from "../../app.component";
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,25 @@ export class ImageService {
   private _images: Array<Image>;
   private _selectedImage: Image;
   private _image: Image;
+  private _message: string = '';
 
   constructor(private http: HttpClient) { }
 
   public save(file: File){
     const filedata = new FormData();
     filedata.append('file', file, file.name);
-    this.http.post(this.API + '/', filedata,{responseType:'text'})
+    this.http.post<Image>(this.API + '/', filedata)
       .subscribe(data => {
-        if (data === 'already exist') {
-          window.alert('this Image Already exist');
-        }else if(data === 'saved'){
-          window.alert('Image Saved Successfully');
-          // this.images.push({...this.selectedImage});
-          this.selectedImage = new Image();
+        if (data == null) {
+          this.message = 'this Image Already exist';
         }else {
-          console.log(data);
+          this.message = '';
+          this.selectedImage = new Image();
+          window.location.reload();
         }
+        console.log(data);
       });
+
   }
 
   public findAll(): Observable<Array<Image>> {
@@ -54,7 +56,13 @@ export class ImageService {
   }
 
 
+  get message(): string {
+    return this._message;
+  }
 
+  set message(value: string) {
+    this._message = value;
+  }
 
   get selectedImage(): Image {
     if (this._selectedImage == null) {

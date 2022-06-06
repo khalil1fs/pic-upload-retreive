@@ -3,6 +3,7 @@
   <div class="mb-3">
     <label for="formFile" class="form-label">Add Image</label>
     <input class="form-control"  (change)="onImageUpload($event)" type="file" id="formFile">
+    <small class="p-error" *ngIf="message!=''">{{ message }}</small>
   </div>
   <div class="d-grid gap-2">
     <button type="button" class="btn btn-outline-primary " (click)="save()" >Save</button>
@@ -17,18 +18,18 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6 col-md-4 mb-3" *ngFor="let image of images" (click)="delete(image)">
-      <img [src]="image.picByte"  alt="Hola ;)" class="fluid img-thumbnail">
+    <div class="col-sm-6 col-md-4 mb-3" *ngFor="let image of images">
+      <img [src]="image.picByte"  alt="Hola ;)" (click)="delete(image)" class="fluid img-thumbnail">
     </div>
   </div>
+
 </div>
 
-
-<footer class="bg-dark">
+<footer class="bg-dark" style="position:marker;">
   <div class="container">
     <div class="row">
       <div class="col d-flex justify-content-center align-items-center text-light">
-        <h5><a href="https://github.com/khalil1fs">Created By Khalil :)</a></h5>
+        <h5>Created By <a href="https://github.com/khalil1fs">Khalil</a> :)</h5>
       </div>
     </div>
 

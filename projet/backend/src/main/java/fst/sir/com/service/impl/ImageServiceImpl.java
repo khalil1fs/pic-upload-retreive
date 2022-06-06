@@ -31,11 +31,11 @@ public class ImageServiceImpl implements ImageService {
 
 
     @Override
-    public String save(Image image) {
-        if (findByName(image.getName()) != null) return "already exist";
+    public Image save(Image image) {
+        if (findByName(image.getName()) != null) return null;
         else {
             Image entity = imageDao.save(image);
-            return "saved";
+            return entity;
         }
     }
 
